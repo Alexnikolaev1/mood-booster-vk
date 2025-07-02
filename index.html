@@ -1,0 +1,912 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1251">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Segoe UI Symbol";
+	panose-1:2 11 5 2 4 2 4 2 2 3;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:10.0pt;
+	margin-left:0cm;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+.MsoChpDefault
+	{font-family:"Calibri",sans-serif;}
+.MsoPapDefault
+	{margin-bottom:10.0pt;
+	line-height:115%;}
+@page WordSection1
+	{size:595.3pt 841.9pt;
+	margin:2.0cm 42.5pt 2.0cm 3.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+
+</head>
+
+<body lang=RU>
+
+<div class=WordSection1>
+
+<p class=MsoNormal><span lang=EN-US>&lt;!DOCTYPE html&gt;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&lt;html lang=&quot;ru&quot;&gt;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&lt;head&gt;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    &lt;meta charset=&quot;UTF-8&quot;&gt;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    &lt;meta name=&quot;viewport&quot;
+content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    </span>&lt;title&gt;Подниматель
+настроения&lt;/title&gt;</p>
+
+<p class=MsoNormal>    &lt;script
+src=&quot;https://unpkg.com/react@18/umd/react.development.js&quot;&gt;&lt;/script&gt;</p>
+
+<p class=MsoNormal>    <span lang=EN-US>&lt;script
+src=&quot;https://unpkg.com/react-dom@18/umd/react-dom.development.js&quot;&gt;&lt;/script&gt;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    &lt;script
+src=&quot;https://unpkg.com/@babel/standalone/babel.min.js&quot;&gt;&lt;/script&gt;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    &lt;script
+src=&quot;https://vk.com/js/api/xd_connection.js&quot;&gt;&lt;/script&gt;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    &lt;style&gt;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        body { margin: 0; padding: 0;
+font-family: Arial, sans-serif; }</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        * { box-sizing: border-box; }</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    &lt;/style&gt;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&lt;/head&gt;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&lt;body&gt;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    &lt;div
+id=&quot;root&quot;&gt;&lt;/div&gt;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    </span></p>
+
+<p class=MsoNormal><span lang=EN-US>    </span>&lt;script type=&quot;text/babel&quot;&gt;</p>
+
+<p class=MsoNormal>        // Здесь будет код вашего приложения</p>
+
+<p class=MsoNormal>        // Скопируйте код из артефакта выше</p>
+
+<p class=MsoNormal>    &lt;/script&gt;</p>
+
+<p class=MsoNormal>&lt;/body&gt;</p>
+
+<p class=MsoNormal>&lt;/html&gt;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><span lang=EN-US>import React, { useState, useEffect,
+useRef, useCallback } from 'react';</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>const MoodBooster = () =&gt; {</span></p>
+
+<p class=MsoNormal><span lang=EN-US>  const [feeling, setFeeling] =
+useState('');</span></p>
+
+<p class=MsoNormal><span lang=EN-US>  const [isLoading, setIsLoading] =
+useState(false);</span></p>
+
+<p class=MsoNormal><span lang=EN-US>  const [message, setMessage] =
+useState('');</span></p>
+
+<p class=MsoNormal><span lang=EN-US>  const [visualParams, setVisualParams] =
+useState({</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    colors: ['#FFD700', '#FFA500',
+'#FF69B4', '#00CED1', '#98FB98'],</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    speed: 0.6,</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    rhythm: 'smooth',</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    density: 0.7,</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    shape: 'curves',</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    energy: 0.8</span></p>
+
+<p class=MsoNormal><span lang=EN-US>  });</span></p>
+
+<p class=MsoNormal><span lang=EN-US>  const canvasRef = useRef(null);</span></p>
+
+<p class=MsoNormal><span lang=EN-US>  const animationRef = useRef(null);</span></p>
+
+<p class=MsoNormal><span lang=EN-US>  const timeRef = useRef(0);</span></p>
+
+<p class=MsoNormal><span lang=EN-US>  </span>const particlesRef = useRef([]);</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>  // Позитивные сообщения для разных настроений</p>
+
+<p class=MsoNormal>  const positiveMessages = {</p>
+
+<p class=MsoNormal>    грустный: &quot;Помни: после дождика всегда выглядывает
+солнышко! <span style='font-family:"Segoe UI Symbol",sans-serif'>&#9728;</span>&#65039;
+Ты сильнее, чем думаешь!&quot;,</p>
+
+<p class=MsoNormal>    усталый: &quot;Отдохни немного, ты заслуживаешь перерыв!
+<span style='font-family:"Segoe UI Symbol",sans-serif'>&#127800;</span> Завтра
+будет новый день полный возможностей!&quot;,</p>
+
+<p class=MsoNormal>    злой: &quot;Дыши глубже! <span style='font-family:"Segoe UI Symbol",sans-serif'>&#127754;</span>
+Эта буря в душе скоро утихнет, и ты снова почувствуешь покой.&quot;,</p>
+
+<p class=MsoNormal>    одинокий: &quot;Ты не один! <span style='font-family:
+"Segoe UI Symbol",sans-serif'>&#128171;</span> Есть люди, которые тебя любят и
+ценят. Позвони кому-нибудь близкому!&quot;,</p>
+
+<p class=MsoNormal>    тревожный: &quot;Всё будет хорошо! &#129419; Ты
+справлялся с трудностями раньше, справишься и сейчас!&quot;,</p>
+
+<p class=MsoNormal>    скучный: &quot;Время для приключений! <span
+style='font-family:"Segoe UI Symbol",sans-serif'>&#127912;</span> Попробуй
+что-то новое сегодня - нарисуй, спой или просто потанцуй!&quot;,</p>
+
+<p class=MsoNormal>    default: &quot;Ты прекрасен такой, какой есть! <span
+style='font-family:"Segoe UI Symbol",sans-serif'>&#10024;</span> Каждый день - это
+подарок, и сегодня особенно прекрасный день!&quot;</p>
+
+<p class=MsoNormal>  <span lang=EN-US>};</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>  // Claude API </span>для анализа настроения</p>
+
+<p class=MsoNormal><span lang=EN-US>  const analyzeFeeling = async (emotion)
+=&gt; {</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    if (!emotion.trim()) return;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    </span></p>
+
+<p class=MsoNormal><span lang=EN-US>    setIsLoading(true);</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    </span></p>
+
+<p class=MsoNormal><span lang=EN-US>    </span>const prompt = `Проанализируй
+эмоцию &quot;${emotion}&quot; и создай позитивное послание для поднятия
+настроения на русском языке. Также предоставь визуальные параметры как JSON:</p>
+
+<p class=MsoNormal>{</p>
+
+<p class=MsoNormal>  &quot;message&quot;: &quot;Позитивное послание на русском
+языке с эмодзи для поднятия настроения&quot;,</p>
+
+<p class=MsoNormal>  <span lang=EN-US>&quot;colors&quot;: [&quot;#hex1&quot;,
+&quot;#hex2&quot;, &quot;#hex3&quot;, &quot;#hex4&quot;, &quot;#hex5&quot;],</span></p>
+
+<p class=MsoNormal><span lang=EN-US>  &quot;speed&quot;: </span>число между<span
+lang=EN-US> 0.5 </span>и<span lang=EN-US> 1.0,</span></p>
+
+<p class=MsoNormal><span lang=EN-US>  &quot;rhythm&quot;: &quot;smooth&quot; </span>или<span
+lang=EN-US> &quot;pulsing&quot;,</span></p>
+
+<p class=MsoNormal><span lang=EN-US>  </span>&quot;density&quot;: число между
+0.6 и 1.0,</p>
+
+<p class=MsoNormal>  &quot;shape&quot;: &quot;curves&quot; или
+&quot;circles&quot;,</p>
+
+<p class=MsoNormal>  &quot;energy&quot;: число между 0.7 и 1.0</p>
+
+<p class=MsoNormal>}</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Используй только яркие, позитивные цвета. Ответь ТОЛЬКО
+валидным JSON.`;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>    try {</p>
+
+<p class=MsoNormal>      <span lang=EN-US>const response = await
+window.claude.complete(prompt);</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      const data = JSON.parse(response);</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      setVisualParams({</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        colors: data.colors ||
+visualParams.colors,</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        speed: data.speed || 0.6,</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        rhythm: data.rhythm || 'smooth',</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        density: data.density || 0.7,</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        shape: data.shape || 'curves',</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        energy: data.energy || 0.8</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      });</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      setMessage(data.message ||
+getPositiveMessage(emotion));</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    } catch (error) {</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      console.error('</span>Ошибка анализа<span
+lang=EN-US>:', error);</span></p>
+
+<p class=MsoNormal><span lang=EN-US>     
+setMessage(getPositiveMessage(emotion));</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    } finally {</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      setIsLoading(false);</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    }</span></p>
+
+<p class=MsoNormal><span lang=EN-US>  };</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>  // </span>Получить позитивное сообщение</p>
+
+<p class=MsoNormal><span lang=EN-US>  const getPositiveMessage = (emotion)
+=&gt; {</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    const lowerEmotion =
+emotion.toLowerCase();</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    for (const [key, msg] of
+Object.entries(positiveMessages)) {</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      if (lowerEmotion.includes(key)) {</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        return msg;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      }</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    }</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    return positiveMessages.default;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>  };</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>  // </span>Инициализация частиц</p>
+
+<p class=MsoNormal><span lang=EN-US>  const initializeParticles =
+useCallback((canvas) =&gt; {</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    const numParticles =
+Math.floor(visualParams.density * 150);</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    particlesRef.current = Array.from({
+length: numParticles }, () =&gt; ({</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      x: Math.random() * canvas.width,</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      y: Math.random() * canvas.height,</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      vx: (Math.random() - 0.5) *
+visualParams.speed * 3,</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      vy: (Math.random() - 0.5) *
+visualParams.speed * 3,</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      size: Math.random() * 2 + 1,</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      angle: Math.random() * Math.PI * 2,</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      angleSpeed: (Math.random() - 0.5) *
+0.02,</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      life: Math.random(),</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      birthTime: Date.now()</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    }));</span></p>
+
+<p class=MsoNormal><span lang=EN-US>  }, [visualParams]);</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>  // </span>Анимация</p>
+
+<p class=MsoNormal><span lang=EN-US>  const animate = useCallback((canvas, ctx)
+=&gt; {</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    timeRef.current += 0.016 *
+visualParams.speed;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    </span></p>
+
+<p class=MsoNormal><span lang=EN-US>    // </span>Создаём градиентный фон</p>
+
+<p class=MsoNormal><span lang=EN-US>    const gradient =
+ctx.createLinearGradient(0, 0, canvas.width, canvas.height);</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    gradient.addColorStop(0, 'rgba(255,
+105, 180, 0.1)');</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    gradient.addColorStop(0.5, 'rgba(0,
+206, 209, 0.1)');</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    gradient.addColorStop(1, 'rgba(255,
+215, 0, 0.1)');</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    </span></p>
+
+<p class=MsoNormal><span lang=EN-US>    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    ctx.fillRect(0, 0, canvas.width,
+canvas.height);</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    </span></p>
+
+<p class=MsoNormal><span lang=EN-US>    ctx.fillStyle = gradient;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    ctx.fillRect(0, 0, canvas.width,
+canvas.height);</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    </span></p>
+
+<p class=MsoNormal><span lang=EN-US>    // </span>Анимация частиц</p>
+
+<p class=MsoNormal><span lang=EN-US>    particlesRef.current.forEach((particle,
+index) =&gt; {</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      // </span>Обновление позиции</p>
+
+<p class=MsoNormal><span lang=EN-US>      if (visualParams.rhythm === 'smooth')
+{</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        particle.x += particle.vx;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        particle.y += particle.vy;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      } else { // pulsing</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        const pulse =
+Math.sin(timeRef.current * 3) * 0.5 + 1;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        particle.x += particle.vx * pulse;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        particle.y += particle.vy * pulse;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      }</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      </span></p>
+
+<p class=MsoNormal><span lang=EN-US>      // </span>Границы экрана</p>
+
+<p class=MsoNormal><span lang=EN-US>      if (particle.x &lt; 0) particle.x =
+canvas.width;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      if (particle.x &gt; canvas.width)
+particle.x = 0;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      if (particle.y &lt; 0) particle.y =
+canvas.height;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      if (particle.y &gt; canvas.height)
+particle.y = 0;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      </span></p>
+
+<p class=MsoNormal><span lang=EN-US>      particle.angle += particle.angleSpeed
+* visualParams.energy;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      </span></p>
+
+<p class=MsoNormal><span lang=EN-US>      // </span>Рисование частицы</p>
+
+<p class=MsoNormal><span lang=EN-US>      ctx.save();</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      ctx.translate(particle.x,
+particle.y);</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      ctx.rotate(particle.angle);</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      </span></p>
+
+<p class=MsoNormal><span lang=EN-US>      const colorIndex = index %
+visualParams.colors.length;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      const alpha =
+Math.sin(timeRef.current + index) * 0.3 + 0.7;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      ctx.fillStyle =
+visualParams.colors[colorIndex] + Math.floor(alpha *
+255).toString(16).padStart(2, '0');</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      ctx.strokeStyle =
+visualParams.colors[colorIndex];</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      ctx.lineWidth = 2;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      </span></p>
+
+<p class=MsoNormal><span lang=EN-US>      if (visualParams.shape === 'curves')
+{</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        </span>// Рисуем красивые кривые</p>
+
+<p class=MsoNormal>        ctx.beginPath();</p>
+
+<p class=MsoNormal>        <span lang=EN-US>ctx.moveTo(0, 0);</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        for (let i = 0; i &lt; 5; i++) {</span></p>
+
+<p class=MsoNormal><span lang=EN-US>          const angle = (i / 5) * Math.PI *
+2;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>          const radius = particle.size * 8
+* (Math.sin(timeRef.current + index + i) * 0.3 + 1);</span></p>
+
+<p class=MsoNormal><span lang=EN-US>          ctx.lineTo(Math.cos(angle) *
+radius, Math.sin(angle) * radius);</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        }</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        ctx.closePath();</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        ctx.fill();</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        ctx.stroke();</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      } else { // circles</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        // </span>Рисуем светящиеся круги</p>
+
+<p class=MsoNormal><span lang=EN-US>        const radius = particle.size * 6 *
+(Math.sin(timeRef.current * 2 + index) * 0.3 + 1);</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        ctx.beginPath();</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        ctx.arc(0, 0, radius, 0, Math.PI *
+2);</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        ctx.fill();</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        </span></p>
+
+<p class=MsoNormal><span lang=EN-US>        // </span>Внешнее свечение</p>
+
+<p class=MsoNormal><span lang=EN-US>        ctx.beginPath();</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        ctx.arc(0, 0, radius * 1.5, 0,
+Math.PI * 2);</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        ctx.fillStyle =
+visualParams.colors[colorIndex] + '30';</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        </span>ctx.fill();</p>
+
+<p class=MsoNormal>      }</p>
+
+<p class=MsoNormal>      </p>
+
+<p class=MsoNormal>      ctx.restore();</p>
+
+<p class=MsoNormal>      </p>
+
+<p class=MsoNormal>      // Обновление жизни частицы</p>
+
+<p class=MsoNormal>      <span lang=EN-US>particle.life += 0.008;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      if (particle.life &gt; 1) {</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        particle.life = 0;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        particle.x = Math.random() *
+canvas.width;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        particle.y = Math.random() *
+canvas.height;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      </span>}</p>
+
+<p class=MsoNormal>    });</p>
+
+<p class=MsoNormal>    </p>
+
+<p class=MsoNormal>    // Соединения между частицами (создают волшебную сеть)</p>
+
+<p class=MsoNormal>    <span lang=EN-US>for (let i = 0; i &lt;
+Math.min(particlesRef.current.length, 50); i++) {</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      for (let j = i + 1; j &lt;
+Math.min(particlesRef.current.length, 50); j++) {</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        const p1 = particlesRef.current[i];</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        const p2 = particlesRef.current[j];</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        const dx = p1.x - p2.x;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        const dy = p1.y - p2.y;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        const distance = Math.sqrt(dx * dx
++ dy * dy);</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        </span></p>
+
+<p class=MsoNormal><span lang=EN-US>        if (distance &lt; 120) {</span></p>
+
+<p class=MsoNormal><span lang=EN-US>          ctx.beginPath();</span></p>
+
+<p class=MsoNormal><span lang=EN-US>          ctx.moveTo(p1.x, p1.y);</span></p>
+
+<p class=MsoNormal><span lang=EN-US>          ctx.lineTo(p2.x, p2.y);</span></p>
+
+<p class=MsoNormal><span lang=EN-US>          const alpha = (1 - distance /
+120) * 0.3;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>          ctx.strokeStyle = visualParams.colors[0]
++ Math.floor(alpha * 255).toString(16).padStart(2, '0');</span></p>
+
+<p class=MsoNormal><span lang=EN-US>          ctx.lineWidth = 1;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>          ctx.stroke();</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        }</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      }</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    }</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    </span></p>
+
+<p class=MsoNormal><span lang=EN-US>    animationRef.current =
+requestAnimationFrame(() =&gt; animate(canvas, ctx));</span></p>
+
+<p class=MsoNormal><span lang=EN-US>  }, [visualParams]);</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>  // </span>Настройка<span lang=EN-US>
+canvas</span></p>
+
+<p class=MsoNormal><span lang=EN-US>  useEffect(() =&gt; {</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    const canvas = canvasRef.current;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    if (!canvas) return;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    </span></p>
+
+<p class=MsoNormal><span lang=EN-US>    const ctx = canvas.getContext('2d');</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    </span></p>
+
+<p class=MsoNormal><span lang=EN-US>    const resizeCanvas = () =&gt; {</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      canvas.width = window.innerWidth;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      canvas.height = window.innerHeight;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      initializeParticles(canvas);</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    };</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    </span></p>
+
+<p class=MsoNormal><span lang=EN-US>    resizeCanvas();</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    window.addEventListener('resize',
+resizeCanvas);</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    </span></p>
+
+<p class=MsoNormal><span lang=EN-US>    animate(canvas, ctx);</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    </span></p>
+
+<p class=MsoNormal><span lang=EN-US>    return () =&gt; {</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      window.removeEventListener('resize',
+resizeCanvas);</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      if (animationRef.current) {</span></p>
+
+<p class=MsoNormal><span lang=EN-US>       
+cancelAnimationFrame(animationRef.current);</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      }</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    };</span></p>
+
+<p class=MsoNormal><span lang=EN-US>  }, [animate, initializeParticles]);</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>  const handleFeelingSubmit = () =&gt; {</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    if (feeling.trim()) {</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      analyzeFeeling(feeling);</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    }</span></p>
+
+<p class=MsoNormal><span lang=EN-US>  };</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>  const handleKeyPress = (e) =&gt; {</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    if (e.key === 'Enter') {</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      handleFeelingSubmit();</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    }</span></p>
+
+<p class=MsoNormal><span lang=EN-US>  };</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>  // </span>Случайный совет</p>
+
+<p class=MsoNormal><span lang=EN-US>  const getRandomAdvice = () =&gt; {</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    const advices = [</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      </span>&quot;Улыбнись себе в зеркале!
+<span style='font-family:"Segoe UI Symbol",sans-serif'>&#128522;</span>&quot;,</p>
+
+<p class=MsoNormal>      &quot;Сделай 10 глубоких вдохов <span
+style='font-family:"Segoe UI Symbol",sans-serif'>&#127788;</span>&#65039;&quot;,</p>
+
+<p class=MsoNormal>      &quot;Послушай любимую песню <span style='font-family:
+"Segoe UI Symbol",sans-serif'>&#127925;</span>&quot;,</p>
+
+<p class=MsoNormal>      &quot;Обними кого-то близкого &#129303;&quot;,</p>
+
+<p class=MsoNormal>      &quot;Выпей чашку горячего чая <span style='font-family:
+"Segoe UI Symbol",sans-serif'>&#9749;</span>&quot;,</p>
+
+<p class=MsoNormal>      &quot;Посмотри на небо и облака <span
+style='font-family:"Segoe UI Symbol",sans-serif'>&#9729;</span>&#65039;&quot;,</p>
+
+<p class=MsoNormal>      &quot;Вспомни что-то приятное <span style='font-family:
+"Segoe UI Symbol",sans-serif'>&#128173;</span>&quot;</p>
+
+<p class=MsoNormal>    <span lang=EN-US>];</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    const randomAdvice = advices[Math.floor(Math.random()
+* advices.length)];</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    setMessage(randomAdvice);</span></p>
+
+<p class=MsoNormal><span lang=EN-US>  };</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>  return (</span></p>
+
+<p class=MsoNormal><span lang=EN-US>    &lt;div className=&quot;w-full h-screen
+relative overflow-hidden bg-gradient-to-br from-purple-900 via-blue-900
+to-indigo-900&quot;&gt;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      &lt;canvas</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        ref={canvasRef}</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        className=&quot;absolute
+inset-0&quot;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      /&gt;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      </span></p>
+
+<p class=MsoNormal><span lang=EN-US>      {/* </span>Заголовок<span lang=EN-US>
+*/}</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      &lt;div className=&quot;absolute
+top-8 left-1/2 transform -translate-x-1/2 z-10 text-center&quot;&gt;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        &lt;h1 className=&quot;text-4xl
+font-bold text-white mb-2 drop-shadow-lg&quot;&gt;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>          </span><span style='font-family:
+"Segoe UI Symbol",sans-serif'>&#10024;</span> Подниматель настроения <span
+style='font-family:"Segoe UI Symbol",sans-serif'>&#10024;</span></p>
+
+<p class=MsoNormal>        &lt;/h1&gt;</p>
+
+<p class=MsoNormal>        &lt;p className=&quot;text-white/80
+text-lg&quot;&gt;Расскажи, как дела, и получи порцию позитива!&lt;/p&gt;</p>
+
+<p class=MsoNormal>      <span lang=EN-US>&lt;/div&gt;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      </span></p>
+
+<p class=MsoNormal><span lang=EN-US>      {/* </span>Сообщение<span lang=EN-US>
+*/}</span></p>
+
+<p class=MsoNormal><span lang=EN-US>      {message &amp;&amp; (</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        &lt;div className=&quot;absolute
+top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10
+max-w-2xl&quot;&gt;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>          &lt;div
+className=&quot;bg-white/10 backdrop-blur-md rounded-2xl p-8 border
+border-white/20 shadow-2xl&quot;&gt;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>            &lt;p
+className=&quot;text-white text-xl text-center leading-relaxed
+font-medium&quot;&gt;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>              </span>{message}</p>
+
+<p class=MsoNormal>            &lt;/p&gt;</p>
+
+<p class=MsoNormal>          &lt;/div&gt;</p>
+
+<p class=MsoNormal>        &lt;/div&gt;</p>
+
+<p class=MsoNormal>      )}</p>
+
+<p class=MsoNormal>      </p>
+
+<p class=MsoNormal>      {/* Управление */}</p>
+
+<p class=MsoNormal>      <span lang=EN-US>&lt;div className=&quot;absolute
+bottom-8 left-1/2 transform -translate-x-1/2 z-10&quot;&gt;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>        &lt;div className=&quot;flex
+flex-col items-center gap-4&quot;&gt;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>          &lt;div className=&quot;flex
+gap-2&quot;&gt;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>            &lt;input</span></p>
+
+<p class=MsoNormal><span lang=EN-US>              type=&quot;text&quot;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>              value={feeling}</span></p>
+
+<p class=MsoNormal><span lang=EN-US>              onChange={(e) =&gt;
+setFeeling(e.target.value)}</span></p>
+
+<p class=MsoNormal><span lang=EN-US>              onKeyPress={handleKeyPress}</span></p>
+
+<p class=MsoNormal><span lang=EN-US>              placeholder=&quot;</span>Как твоё
+настроение<span lang=EN-US>?&quot;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>              className=&quot;px-6 py-3
+w-80 rounded-full bg-white/10 text-white border border-white/30 </span></p>
+
+<p class=MsoNormal><span lang=EN-US>                       focus:outline-none
+focus:border-white/60 backdrop-blur-sm text-center</span></p>
+
+<p class=MsoNormal><span lang=EN-US>                       placeholder-white/60
+text-lg&quot;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>            /&gt;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>            &lt;button</span></p>
+
+<p class=MsoNormal><span lang=EN-US>              onClick={handleFeelingSubmit}</span></p>
+
+<p class=MsoNormal><span lang=EN-US>              disabled={isLoading}</span></p>
+
+<p class=MsoNormal><span lang=EN-US>              className={`px-8 py-3
+rounded-full bg-gradient-to-r from-pink-500 to-purple-500 </span></p>
+
+<p class=MsoNormal><span lang=EN-US>                       text-white
+font-semibold transition-all transform hover:scale-105</span></p>
+
+<p class=MsoNormal><span lang=EN-US>                       ${isLoading </span></p>
+
+<p class=MsoNormal><span lang=EN-US>                         ? 'opacity-50
+cursor-not-allowed' </span></p>
+
+<p class=MsoNormal><span lang=EN-US>                         : 'hover:shadow-lg
+hover:from-pink-400 hover:to-purple-400'</span></p>
+
+<p class=MsoNormal><span lang=EN-US>                       }`}</span></p>
+
+<p class=MsoNormal><span lang=EN-US>            &gt;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>              {isLoading ? (</span></p>
+
+<p class=MsoNormal><span lang=EN-US>                &lt;span
+className=&quot;flex items-center&quot;&gt;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>                  &lt;svg
+className=&quot;animate-spin -ml-1 mr-2 h-5 w-5 text-white&quot;
+xmlns=&quot;http://www.w3.org/2000/svg&quot; fill=&quot;none&quot;
+viewBox=&quot;0 0 24 24&quot;&gt;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>                    &lt;circle
+className=&quot;opacity-25&quot; cx=&quot;12&quot; cy=&quot;12&quot;
+r=&quot;10&quot; stroke=&quot;currentColor&quot;
+strokeWidth=&quot;4&quot;&gt;&lt;/circle&gt;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>                    &lt;path
+className=&quot;opacity-75&quot; fill=&quot;currentColor&quot; d=&quot;M4 12a8
+8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042
+1.135 5.824 3 7.938l3-2.647z&quot;&gt;&lt;/path&gt;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>                  </span>&lt;/svg&gt;</p>
+
+<p class=MsoNormal>                  Думаю...</p>
+
+<p class=MsoNormal>                &lt;/span&gt;</p>
+
+<p class=MsoNormal>              ) : (</p>
+
+<p class=MsoNormal>                &quot;Поднять настроение! <span
+style='font-family:"Segoe UI Symbol",sans-serif'>&#128640;</span><span
+lang=EN-US>&quot;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>              )}</span></p>
+
+<p class=MsoNormal><span lang=EN-US>            &lt;/button&gt;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>          &lt;/div&gt;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>          </span></p>
+
+<p class=MsoNormal><span lang=EN-US>          &lt;button</span></p>
+
+<p class=MsoNormal><span lang=EN-US>            onClick={getRandomAdvice}</span></p>
+
+<p class=MsoNormal><span lang=EN-US>            className=&quot;px-6 py-2
+rounded-full bg-white/10 text-white border border-white/30 </span></p>
+
+<p class=MsoNormal><span lang=EN-US>                     hover:bg-white/20
+transition-colors backdrop-blur-sm&quot;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>          </span>&gt;</p>
+
+<p class=MsoNormal>            <span style='font-family:"Segoe UI Symbol",sans-serif'>&#128161;</span>
+Случайный совет</p>
+
+<p class=MsoNormal>          &lt;/button&gt;</p>
+
+<p class=MsoNormal>        &lt;/div&gt;</p>
+
+<p class=MsoNormal>      &lt;/div&gt;</p>
+
+<p class=MsoNormal>    &lt;/div&gt;</p>
+
+<p class=MsoNormal>  );</p>
+
+<p class=MsoNormal>};</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>export default MoodBooster;</p>
+
+</div>
+
+</body>
+
+</html>
